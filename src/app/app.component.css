@@ -1,0 +1,95 @@
+main {
+    padding: 2rem;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    background-color: var(--main-red);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 3% 100%, 0 92%);
+}
+
+.pokemonImage {
+    width: 40%;
+    aspect-ratio: 1;
+    padding: 1rem;
+    background-color: var(--background-gray);
+    padding-bottom: 2rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%, 0 90%);
+}
+
+.pokemonImage img{
+    width: 100%;
+    background-color: #ccc;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.details {
+    display: flex;
+    margin: 1rem 4.5rem 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.redCircle {
+    padding: 1.5rem;
+    width: fit-content;
+    border-radius: 5rem;
+    background-color: var(--main-red);
+}
+
+.lines {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+.lines span{
+    display: block;
+    background-color: var(--text-black);
+    padding: .2rem;
+    width: 8rem;
+    border-radius: 5rem;
+}
+
+.upperDetails{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+.upperDetails .redCircle {
+    padding: .5rem;
+}
+
+main hr {
+    padding: 2rem;
+    background-color: #8d0e23;
+    border: none;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+}
+
+.pokemonDetails {
+    width: 40%;
+}
+
+.pokemonDetails ul{
+    list-style: none;
+}
+
+.pokemonData {
+    padding: 1rem;
+    background-color: black;
+    font-family: 'Pixeled';
+    color: white;
+    text-transform: uppercase;
+    padding-left: 4rem;
+    min-height: 75vh;
+}
+
+.pokemonData ol {
+    font-size: .8rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}

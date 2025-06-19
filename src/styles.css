@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+*::before,
+*::after,
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-red: #dc2626;
+    --text-black: #6a6a6a;
+    --background-gray: #e5e7eb;
+}
+
+@font-face {
+    font-family: 'Pixeled';
+    src: url('./assets/fonts/Pixeled.ttf');
+}
