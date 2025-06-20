@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { PokemonService } from '../features/pokemons/services/pokemon.service';
 import { PokemonSpeciesService } from '../features/pokemons/services/pokemonSpecies.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import type { LucideIconData } from 'lucide-angular';
 import { LucideAngularModule, Heart, Swords, Shield, ShieldHalf, Zap, LoaderPinwheel } from 'lucide-angular';
 
@@ -77,7 +77,7 @@ const pokemonColorMap: Record<string, string> = {
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, RouterLink],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
@@ -86,6 +86,7 @@ export class DetailsComponent {
     pokeData : PokeData | null = null;
     pokeSpecies : PokeSpeciesData | null = null;
     randomIndex : number = 0;
+    iconBackPokedex : string = "../../assets/imgs/play.png";
 
     readonly icons : Record<string, LucideIconData> = {
         hp: Heart,

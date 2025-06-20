@@ -122,3 +122,44 @@ h4 {
     margin-bottom: 10px;
     border-radius: 5rem;
 }
+
+.cardAbility {
+    font-size: 18px;
+    padding: 1rem;
+    background-color: #f9fafb;
+    margin-top: 15px;
+}
+
+.backToPokedex, .allPokemons {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    background-color: #0000009f;
+    padding: .5rem 1rem;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.allPokemons {
+    left: revert;
+    right: 1%;
+}
+
+.backToPokedex img, .allPokemons img{
+    filter: invert();
+    height: 2rem;
+    transform: rotate(180deg);
+}
+
+.allPokemons img{
+    transform: revert;
+}
+
+a {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Pixeled';
+    text-decoration: none;
+}
