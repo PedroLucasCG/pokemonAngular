@@ -1,6 +1,8 @@
 main {
     padding: 2rem;
     display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
     position: relative;
     justify-content: space-between;
     background-color: var(--main-red);
@@ -8,9 +10,9 @@ main {
 }
 
 .pokemonImage {
-    width: 40%;
+    width: 38%;
     aspect-ratio: 1;
-    padding: 1rem;
+    padding: 1%;
     background-color: var(--background-gray);
     padding-bottom: 2rem;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%, 0 90%);
@@ -25,7 +27,7 @@ main {
 
 .details {
     display: flex;
-    margin: 1rem 4.5rem 0;
+    margin: 1% 4.5% 0;
     justify-content: space-between;
     align-items: center;
 }
@@ -86,10 +88,38 @@ main hr {
     text-transform: uppercase;
     padding-left: 4rem;
     min-height: 75vh;
+    margin-bottom: 1rem;
 }
 
 .pokemonData ol {
     font-size: .8rem;
     margin-left: 2rem;
     margin-bottom: 1rem;
+}
+
+.detailsBottom {
+    justify-content: end;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.detailsBottom div {
+    background-color: #0f453a;
+    width: fit-content;
+    padding: 2rem;
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+
+.detailsBottom div:nth-of-type(2) {
+    transform: rotate(180deg);
+}
+
+.detailsBottom div:first-of-type {
+    clip-path: revert;
+    font-family: 'Pixeled';
+    font-size: .8rem;
+    padding: 1rem;
+    text-transform: uppercase;
+    color: #21997f;
 }

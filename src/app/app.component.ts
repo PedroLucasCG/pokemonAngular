@@ -58,7 +58,25 @@ export class AppComponent {
 
     fetchRandomPokemon() {
         this.pokemonService.getRandomPokemon().subscribe(data => {
-            console.log(data);
+            this.artworkSrc = data.sprites.other["official-artwork"].front_default;
+            this.pokeData = {
+                id: data.id,
+                name: data.name,
+                types: data.types,
+                height: data.height,
+                weight: data.weight,
+                abilities: data.abilities,
+                stats: data.stats,
+            };
+            console.log(this.pokeData);
+        });
+    }
+
+    fetchNextPokemon(next : boolean = true){
+        let id = this.pokeData?.id || 0;
+        next ? ++id : --id;
+        id = id < 0 ? 0 : id > 151 ? 151 : id;
+        this.pokemonService.getById(id).subscribe(data => {
             this.artworkSrc = data.sprites.other["official-artwork"].front_default;
             this.pokeData = {
                 id: data.id,

@@ -40,11 +40,18 @@
             </li>
         </ul>
     </div>
+    <div class="detailsBottom">
+        <div>
+            detalhes
+        </div>
+        <div (click)="fetchNextPokemon(false)"></div>
+        <div (click)="fetchNextPokemon()"></div>
+    </div>
 </main>
 
 <div class="container">
     <div *ngIf="pokemons.length === 0; else pokemonDisplay">
-         <h2>Não há pokemons!</h2>
+
     </div>
 
     <ng-template #pokemonDisplay>

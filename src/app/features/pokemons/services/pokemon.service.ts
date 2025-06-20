@@ -15,8 +15,8 @@ export class PokemonService {
     return this.http.get(`${this.apiUrl}?limit=${limit}`);
   }
 
-  getByName(name: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${name}`);
+  getById(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
 
   getRandomPokemon(): Observable<any> {
