@@ -1,0 +1,47 @@
+<div class="cardGrid">
+    <div class="firstColumn">
+        <div class="general">
+            <p>{{ pokeData?.id }}</p>
+            <img [src]="artworkSrc" [alt]="pokeData?.name">
+            <p>{{ pokeData?.name }}</p>
+            <div>
+                <span *ngFor="let type of pokeData?.types">{{ type.type.name }}</span>
+            </div>
+           <p>{{ sanitizeFlavorText(pokeSpecies?.flavor_text_entries?.[randomIndex]?.flavor_text || "") }}</p>
+        </div>
+        <div class="physicalStats">
+            <h4>Physycal Stats</h4>
+            <div>
+                <div>
+                    <span>{{ pokeData?.height }}</span>
+                    Height
+                </div>
+                <div>
+                    <span>{{ pokeData?.weight }}</span>
+                    Weight
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lastColumn">
+        <div class="battleStats">
+            <h4>Battle Stats</h4>
+            <div *ngFor="let item of pokeData?.stats">
+                <div class="iconLabel">
+                    <img src="" alt="`icon de ${item.stat.name}`">
+                    <div class="label" [innerHtml]="item.stat.name"></div>
+                </div>
+                <div class="number">{{ item.base_stat }}</div>
+                <div class="bar">
+                    <div class="fill" [style.width.%]="item.base_stat"></div>
+                </div>
+            </div>
+        </div>
+        <div class="abilities">
+            <h4>abilities</h4>
+            <div class="cardAbility" *ngFor="let item of pokeData?.abilities">
+                {{ item.ability.name }}
+            </div>
+        </div>
+    </div>
+</div>
