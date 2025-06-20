@@ -1,23 +1,23 @@
-<div class="cardGrid">
+<main [style.backgroundColor]="getColor(pokeSpecies?.color?.name) ">
     <div class="firstColumn">
         <div class="general">
-            <p>{{ pokeData?.id }}</p>
+            <p># {{ getFormattedId() }}</p>
             <img [src]="artworkSrc" [alt]="pokeData?.name">
-            <p>{{ pokeData?.name }}</p>
+            <p class="pokemonName">{{ pokeData?.name }}</p>
             <div>
-                <span *ngFor="let type of pokeData?.types">{{ type.type.name }}</span>
+                <span class="pokemonType" *ngFor="let type of pokeData?.types" [style.backgroundColor]="getColor(pokeSpecies?.color?.name)" [style.color]="getContrastColor(getColor(pokeSpecies?.color?.name))">{{ type.type.name }}</span>
             </div>
-           <p>{{ sanitizeFlavorText(pokeSpecies?.flavor_text_entries?.[randomIndex]?.flavor_text || "") }}</p>
+        <p class="flavorText">{{ sanitizeFlavorText(pokeSpecies?.flavor_text_entries?.[randomIndex]?.flavor_text || "No Flavor Text") }}</p>
         </div>
         <div class="physicalStats">
             <h4>Physycal Stats</h4>
             <div>
                 <div>
-                    <span>{{ pokeData?.height }}</span>
+                    <span>{{ pokeData?.height }} m</span>
                     Height
                 </div>
                 <div>
-                    <span>{{ pokeData?.weight }}</span>
+                    <span>{{ pokeData?.weight }} kg</span>
                     Weight
                 </div>
             </div>
@@ -44,4 +44,4 @@
             </div>
         </div>
     </div>
-</div>
+</main>

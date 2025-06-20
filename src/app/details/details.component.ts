@@ -60,6 +60,19 @@ export interface FlavorTextEntry {
     };
 }
 
+const pokemonColorMap: Record<string, string> = {
+  black: '#7d7d7d',
+  blue: '#a5c8ff',
+  brown: '#d2b48c',
+  gray: '#d3d3d3',
+  green: '#b2e2b2',
+  pink: '#ffc1cc',
+  purple: '#d1b3ff',
+  red: '#E34234',
+  white: '#ffffff',
+  yellow: '#fff5b3',
+};
+
 @Component({
   selector: 'app-details',
   imports: [CommonModule],
@@ -85,8 +98,8 @@ export class DetailsComponent {
                 id: data.id,
                 name: data.name,
                 types: data.types,
-                height: data.height,
-                weight: data.weight,
+                height: data.height / 100,
+                weight: data.weight / 100,
                 abilities: data.abilities,
                 stats: data.stats,
             };
@@ -110,6 +123,28 @@ export class DetailsComponent {
             .replace(/\s+/g, ' ')
             .trim();
     }
+
+    getFormattedId(): string {
+        if (!this.pokeData?.id) return '';
+        return this.pokeData.id.toString().padStart(3, '0');
+    }
+
+    getColor(name : string | undefined) {
+        return pokemonColorMap[name || 'white'];
+    }
+
+    getContrastColor(hexColor: string): string {
+        const color = hexColor.replace('#', '');
+
+        const r = parseInt(color.slice(0, 2), 16);
+        const g = parseInt(color.slice(2, 4), 16);
+        const b = parseInt(color.slice(4, 6), 16);
+
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+        return luminance > 0.5 ? 'black' : 'white';
+    }
+
 
     ngOnInit(){
         const id = this.route.snapshot.paramMap.get('id');
