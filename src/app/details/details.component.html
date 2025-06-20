@@ -28,12 +28,12 @@
             <h4>Battle Stats</h4>
             <div *ngFor="let item of pokeData?.stats">
                 <div class="iconLabel">
-                    <img src="" alt="`icon de ${item.stat.name}`">
+                    <lucide-icon [img]="icons[item.stat.name]" class="my-icon"></lucide-icon>
                     <div class="label" [innerHtml]="item.stat.name"></div>
                 </div>
                 <div class="number">{{ item.base_stat }}</div>
                 <div class="bar">
-                    <div class="fill" [style.width.%]="item.base_stat"></div>
+                    <div class="fill" [style.width.%]="item.base_stat" [style.backgroundColor]="getColor(pokeSpecies?.color?.name)"></div>
                 </div>
             </div>
         </div>

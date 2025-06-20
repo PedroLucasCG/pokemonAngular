@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 import { PokemonService } from '../features/pokemons/services/pokemon.service';
 import { PokemonSpeciesService } from '../features/pokemons/services/pokemonSpecies.service';
 import { ActivatedRoute } from '@angular/router';
+import type { LucideIconData } from 'lucide-angular';
+import { LucideAngularModule, Heart, Swords, Shield, ShieldHalf, Zap, LoaderPinwheel } from 'lucide-angular';
 
 interface Ability {
     ability: {
@@ -69,13 +71,13 @@ const pokemonColorMap: Record<string, string> = {
   pink: '#ffc1cc',
   purple: '#d1b3ff',
   red: '#E34234',
-  white: '#ffffff',
+  white: '#ededed',
   yellow: '#fff5b3',
 };
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
@@ -84,6 +86,16 @@ export class DetailsComponent {
     pokeData : PokeData | null = null;
     pokeSpecies : PokeSpeciesData | null = null;
     randomIndex : number = 0;
+
+    readonly icons : Record<string, LucideIconData> = {
+        hp: Heart,
+        attack: Swords,
+        defense: Shield,
+        'special-defense': ShieldHalf,
+        speed: Zap,
+        'special-attack': LoaderPinwheel
+    }
+
     @Input({ required: true }) pageId!: string;
 
     constructor (

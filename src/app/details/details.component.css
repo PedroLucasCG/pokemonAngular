@@ -95,8 +95,30 @@ h4 {
     background-color: #f9fafb;
 }
 
-
 .physicalStats span {
     font-family: 'Poppins-Bold';
     font-size: 24px;
+}
+
+.battleStats > div {
+    margin-top: 1rem;
+    display: flex;
+    min-width: 50ch;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.iconLabel {
+    display: flex;
+    gap: 10px;
+}
+
+.bar, .fill {
+    width: 100%;
+    max-width: 100%;
+    background-color: #f9fafb;
+    height: 10px;
+    margin-bottom: 10px;
+    border-radius: 5rem;
 }
