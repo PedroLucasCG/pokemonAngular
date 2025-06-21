@@ -1,1 +1,23 @@
-<p>catalog works!</p>
+<main>
+    <div class="pageNumbers">
+        <span
+            *ngFor="let c of pageNumbers"
+            [class.currentPage]="c === currentPage"
+            (click)="changePage(c)">
+            {{ c }}
+        </span>
+    </div>
+    <section class="cardGrid">
+        <div class="card" *ngFor="let pokemon of pokeData">
+            <img [src]="pokemon.artworkSrc" [alt]="pokemon.name">
+            <p>{{ pokemon.name }}</p>
+            <div>
+                <span
+                    *ngFor="let type of pokemon.types"
+                    [style.backgroundColor]="typeColor[type.type.name]">
+                    {{ type.type.name }}
+                </span>
+            </div>
+        </div>
+    </section>
+</main>

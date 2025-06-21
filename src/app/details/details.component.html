@@ -3,7 +3,7 @@
     <a routerLink="">Pokedex</a>
 </div>
 <div class="allPokemons">
-    <a routerLink="">Catalog</a>
+    <a routerLink="/catalog">Catalog</a>
     <img src="assets/imgs/play.png" alt="seta de retorno">
 </div>
 <main [style.backgroundColor]="getColor(pokeSpecies?.color?.name) ">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="number">{{ item.base_stat }}</div>
                 <div class="bar">
-                    <div class="fill" [style.width.%]="item.base_stat" [style.backgroundColor]="getColor(pokeSpecies?.color?.name)"></div>
+                    <div class="fill" [style.width.%]="item.base_stat / 1.5" [style.backgroundColor]="getColor(pokeSpecies?.color?.name)"></div>
                 </div>
             </div>
         </div>

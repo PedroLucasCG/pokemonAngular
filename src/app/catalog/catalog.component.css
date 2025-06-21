@@ -1,0 +1,69 @@
+main {
+    background-color: #d1dff6;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background-color: white;
+    width: fit-content;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.card p {
+    font-family: 'Poppins-Bold';
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.card span {
+    font-size: 12px;
+    padding: .3rem .5rem;
+    border-radius: 5rem;
+    background-color: #f9fafb;
+    font-family: 'Poppins-Regular';
+    text-transform: capitalize;
+}
+
+.card img {
+    display: block;
+    height: 10rem;
+}
+
+.card div {
+    margin-top: 5px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.pageNumbers {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.pageNumbers span{
+    background-color: white;
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    align-content: center;
+    font-family: 'Poppins-Light';
+    aspect-ratio: 1;
+    border-radius: 5rem;
+}
+
+.currentPage {
+    background-color: #7eb6f5 !important;
+    color: white;
+    font-weight: bold;
+}

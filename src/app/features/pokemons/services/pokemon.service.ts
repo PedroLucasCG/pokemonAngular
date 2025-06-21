@@ -5,14 +5,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PokemonService {
   private apiUrl = 'https://pokeapi.co/api/v2/pokemon';
   private maxPokemonId = 151;
 
   constructor(private http: HttpClient) {}
 
-  getAll(limit = 151): Observable<any> {
-    return this.http.get(`${this.apiUrl}?limit=${limit}`);
+  getAll(limit = 151, offset = 0): Observable<any> {
+    return this.http.get(`${this.apiUrl}?offset=${offset}limit=${limit}`);
   }
 
   getById(id: number): Observable<any> {
@@ -22,5 +23,9 @@ export class PokemonService {
   getRandomPokemon(): Observable<any> {
     const randomId = Math.floor(Math.random() * this.maxPokemonId) + 1;
     return this.http.get(`${this.apiUrl}/${randomId}`);
+  }
+
+  getWithUrl(url : string): Observable<any> {
+    return this.http.get(url);
   }
 }
