@@ -1,44 +1,8 @@
 import { Component } from '@angular/core';
-import { Pokemon } from '../models/pokemon';
+import { PokeData } from '../models/pokemon';
 import { PokemonService } from '../features/pokemons/services/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-interface Ability {
-    ability: {
-        name: string,
-        url: string
-    },
-    is_hidden: boolean,
-    slot: number
-}
-
-interface Type {
-    slot: number,
-    type: {
-        name: string,
-        url: string
-    }
-}
-
-interface Stats {
-    base_stat: number,
-    effort: number,
-    stat: {
-        name: string,
-        url: string
-    }
-}
-
-interface PokeData {
-    id: number,
-    name: string,
-    types: Type[],
-    height: number,
-    weight: number,
-    abilities: Ability[]
-    stats: Stats[],
-}
 
 @Component({
   selector: 'app-pokedex',
@@ -49,9 +13,6 @@ interface PokeData {
 export class PokedexComponent {
     artworkSrc = "";
     pokeData : PokeData | null = null;
-    pokemons : Pokemon[] = [
-        //new Pokemon("Pikachu")
-    ]
 
     constructor (private pokemonService: PokemonService) {}
 

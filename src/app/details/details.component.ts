@@ -1,123 +1,14 @@
+import { LucideAngularModule, Heart, Swords, Shield, ShieldHalf, Zap, LoaderPinwheel } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { PokemonService } from '../features/pokemons/services/pokemon.service';
-import { PokemonSpeciesService } from '../features/pokemons/services/pokemonSpecies.service';
+import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import type { LucideIconData } from 'lucide-angular';
-import { firstValueFrom, Observable } from 'rxjs';
-import { LucideAngularModule, Heart, Swords, Shield, ShieldHalf, Zap, LoaderPinwheel } from 'lucide-angular';
-
-interface Ability {
-    ability: {
-        name: string,
-        url: string
-    },
-    is_hidden: boolean,
-    slot: number
-}
-
-interface Type {
-    slot: number,
-    type: {
-        name: string,
-        url: string
-    }
-}
-
-interface Stats {
-    base_stat: number,
-    effort: number,
-    stat: {
-        name: string,
-        url: string
-    }
-}
-
-interface PokeData {
-    id: number,
-    name: string,
-    types: Type[],
-    height: number,
-    weight: number,
-    abilities: Ability[]
-    stats: Stats[],
-}
-
-interface PokeDataEvolution {
-    id: number,
-    name: string,
-    types: Type[],
-    height: number,
-    weight: number,
-    abilities: Ability[]
-    stats: Stats[],
-    artworkSrc: string,
-}
-
-interface PokeSpeciesData {
-    color: {
-        name: string;
-        url: string;
-    };
-    flavor_text_entries: FlavorTextEntry[];
-    evolution_chain: {
-        url: string;
-    };
-}
-
-interface FlavorTextEntry {
-    flavor_text: string;
-    language: {
-        name: string;
-        url: string;
-    };
-    version: {
-        name: string;
-        url: string;
-    };
-}
-
-interface EvolutionNode {
-    species: {
-        name: string;
-        url: string;
-    };
-    evolves_to: EvolutionNode[];
-}
-
-const pokemonColorMap: Record<string, string> = {
-  black: '#7d7d7d',
-  blue: '#a5c8ff',
-  brown: '#d2b48c',
-  gray: '#d3d3d3',
-  green: '#b2e2b2',
-  pink: '#ffc1cc',
-  purple: '#d1b3ff',
-  red: '#E34234',
-  white: '#ededed',
-  yellow: '#fff5b3',
-};
-
-export const pokemonTypeColorMap: Record<string, string> = {
-    normal: '#d3d3c7',
-    fire: '#ffb482',
-    water: '#a4d8ff',
-    electric: '#ffe37b',
-    grass: '#b2e8b2',
-    ice: '#d4f1f9',
-    fighting: '#e79a9a',
-    poison: '#d4a0d4',
-    ground: '#f2e1b1',
-    flying: '#d0c2f0',
-    psychic: '#ffb3c6',
-    bug: '#d3e882',
-    rock: '#e2d3a3',
-    ghost: '#b9a2d0',
-    dragon: '#b090f8',
-    dark: '#a69889',
-    steel: '#d0d0e0',
-    fairy: '#f9c2d1'
-};
+import { PokemonService } from '../features/pokemons/services/pokemon.service';
+import { PokeDataEvolution, PokeData } from '../models/pokemon';
+import { PokeSpeciesData, FlavorTextEntry, EvolutionNode } from '../models/pokemonSpecies';
+import { pokemonTypeColorMap, pokemonColorMap } from '../constants/pokemonColors';
+import { PokemonSpeciesService } from '../features/pokemons/services/pokemonSpecies.service';
 
 @Component({
   selector: 'app-details',
@@ -201,8 +92,6 @@ export class DetailsComponent {
                     });
                 });
             }
-
-            console.log(this.pokeEvolutionData);
         });
     }
 
