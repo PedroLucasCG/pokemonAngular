@@ -51,7 +51,7 @@ interface PokeDataEvolution {
     weight: number,
     abilities: Ability[]
     stats: Stats[],
-    sprite: string,
+    artworkSrc: string,
 }
 
 interface PokeSpeciesData {
@@ -77,26 +77,6 @@ interface FlavorTextEntry {
     };
 }
 
-interface PokeApiResponse {
-    id: number,
-    name: string,
-    types: Type[],
-    height: number,
-    weight: number,
-    abilities: Ability[]
-    stats: Stats[],
-    sprites: {
-        other: {
-            'official-artwork': { front_default: string }
-        }
-    },
-}
-
-interface EvolutionChain {
-    id: number;
-    chain: EvolutionNode;
-}
-
 interface EvolutionNode {
     species: {
         name: string;
@@ -118,6 +98,27 @@ const pokemonColorMap: Record<string, string> = {
   yellow: '#fff5b3',
 };
 
+export const pokemonTypeColorMap: Record<string, string> = {
+    normal: '#d3d3c7',
+    fire: '#ffb482',
+    water: '#a4d8ff',
+    electric: '#ffe37b',
+    grass: '#b2e8b2',
+    ice: '#d4f1f9',
+    fighting: '#e79a9a',
+    poison: '#d4a0d4',
+    ground: '#f2e1b1',
+    flying: '#d0c2f0',
+    psychic: '#ffb3c6',
+    bug: '#d3e882',
+    rock: '#e2d3a3',
+    ghost: '#b9a2d0',
+    dragon: '#b090f8',
+    dark: '#a69889',
+    steel: '#d0d0e0',
+    fairy: '#f9c2d1'
+};
+
 @Component({
   selector: 'app-details',
   imports: [CommonModule, LucideAngularModule, RouterLink],
@@ -130,6 +131,7 @@ export class DetailsComponent {
     pokeEvolutionData : PokeDataEvolution[] = [];
     pokeSpecies : PokeSpeciesData | null = null;
     randomIndex : number = 0;
+    typeColor : Record<string, string> = pokemonTypeColorMap;
     iconBackPokedex : string = "../../assets/imgs/play.png";
     evolutionChain : string[] = [];
 
@@ -150,6 +152,13 @@ export class DetailsComponent {
         private pokemonSpeciesService: PokemonSpeciesService ) {}
 
     fetchPokemonData(id : number) {
+        this.artworkSrc = "";
+        this.pokeData = null;
+        this.pokeSpecies = null;
+        this.pokeEvolutionData = [];
+        this.evolutionChain = [];
+        this.randomIndex = 0;
+
         this.pokemonService.getById(id).subscribe(data => {
             this.artworkSrc = data.sprites.other["official-artwork"].front_default;
             this.pokeData = {
@@ -188,7 +197,7 @@ export class DetailsComponent {
                         weight: pokemonData.weight / 100,
                         abilities: pokemonData.abilities,
                         stats: pokemonData.stats,
-                        sprite: pokemonData.sprites.other["official-artwork"].front_default
+                        artworkSrc: pokemonData.sprites.other["official-artwork"].front_default
                     });
                 });
             }
@@ -241,9 +250,11 @@ export class DetailsComponent {
 
 
     ngOnInit(){
-        const id = this.route.snapshot.paramMap.get('id');
-        if (id) {
-            this.fetchPokemonData(parseInt(id));
-        }
+        this.route.paramMap.subscribe(params => {
+            const id = params.get('id');
+            if (id) {
+                this.fetchPokemonData(parseInt(id));
+            }
+        });
     }
 }

@@ -54,7 +54,18 @@
     </div>
     <div>
         <div>
-            
+            <h4>Evolution Chain</h4>
+            <div class="card" *ngFor="let pokemon of pokeEvolutionData" [routerLink]="`/detalhes/${pokemon.id}`">
+                <img [src]="pokemon.artworkSrc" [alt]="pokemon.name">
+                <p>{{ pokemon.name }}</p>
+                <div>
+                    <span
+                        *ngFor="let type of pokemon.types"
+                        [style.backgroundColor]="typeColor[type.type.name]">
+                        {{ type.type.name }}
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </main>
