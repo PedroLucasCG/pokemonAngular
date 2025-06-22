@@ -13,7 +13,8 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
   getAll(limit = 151, offset = 0): Observable<any> {
-    return this.http.get(`${this.apiUrl}?offset=${offset}limit=${limit}`);
+    console.log(`${this.apiUrl}?offset=${offset}&limit=${limit}`);
+    return this.http.get(`${this.apiUrl}?offset=${offset}&limit=${limit}`);
   }
 
   getById(id: number): Observable<any> {

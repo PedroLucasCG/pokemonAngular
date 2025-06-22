@@ -1,14 +1,21 @@
 <main>
+    <h1>Pokemon Catalog!</h1>
     <div class="pageNumbers">
-        <span
-            *ngFor="let c of pageNumbers"
-            [class.currentPage]="c === currentPage"
-            (click)="changePage(c)">
-            {{ c }}
+        <span *ngFor="let item of pagination">
+            <span
+            *ngIf="item !== '...'"
+            [class.currentPage]="item === currentPage"
+            (click)="changePage(item)">
+                {{ item }}
+            </span>
+
+            <span *ngIf="item === '...'">
+            ...
+            </span>
         </span>
     </div>
     <section class="cardGrid">
-        <div class="card" *ngFor="let pokemon of pokeData">
+        <div class="card" *ngFor="let pokemon of pokeData" [routerLink]="`/detalhes/${pokemon.id}`">
             <img [src]="pokemon.artworkSrc" [alt]="pokemon.name">
             <p>{{ pokemon.name }}</p>
             <div>
@@ -21,3 +28,7 @@
         </div>
     </section>
 </main>
+
+<div class="backToPokedex" routerLink="">
+    <img src="assets/imgs/pokedex-icon.png" alt="pokedex de retorno">
+</div>

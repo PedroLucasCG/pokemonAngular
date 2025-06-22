@@ -4,10 +4,18 @@ main {
     padding: 1rem;
 }
 
+h1 {
+    font-family: 'Pixeled';
+    text-transform: uppercase;
+    text-align: center;
+    color: #2b2d42
+}
+
 .cardGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
+    justify-content: center;
 }
 
 .card {
@@ -15,6 +23,7 @@ main {
     width: fit-content;
     border-radius: 1rem;
     padding: 2rem;
+    cursor: pointer;
 }
 
 .card p {
@@ -34,7 +43,7 @@ main {
 
 .card img {
     display: block;
-    height: 10rem;
+    height: 8rem;
 }
 
 .card div {
@@ -46,24 +55,79 @@ main {
 
 .pageNumbers {
     display: flex;
-    gap: 5px;
+    gap: 8px;
     justify-content: center;
     padding: 1rem 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin
 }
 
 .pageNumbers span{
     background-color: white;
-    display: inline-block;
-    width: 30px;
+    display: block;
+    width: 2rem;
+    background-color: white;
     text-align: center;
     align-content: center;
     font-family: 'Poppins-Light';
     aspect-ratio: 1;
     border-radius: 5rem;
+    cursor: pointer;
+    transition: all ease-in-out .2s;
 }
 
 .currentPage {
     background-color: #7eb6f5 !important;
     color: white;
     font-weight: bold;
+}
+
+.pageNumbers span:hover {
+  transform: scale(1.1);
+}
+
+.backToPokedex {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.backToPokedex img {
+    height: 7rem;
+    transition: transform ease-in-out .2s;
+    cursor: pointer;
+}
+
+.backToPokedex img:hover {
+    transform: scale(1.5);
+}
+
+@media screen and (max-width: 1024px) {
+    .cardGrid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+    }
+    main {
+        padding: .3rem;
+    }
+    .pageNumbers span {
+        font-size: 14px;
+        width: 1.6rem;
+    }
+
+    .card img {
+        height: 8rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .cardGrid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .card img {
+        height: 7rem;
+    }
 }
