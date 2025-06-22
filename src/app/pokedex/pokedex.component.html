@@ -42,21 +42,14 @@
     </div>
     <div class="detailsBottom">
         <div>
+            <a routerLink="/catalog">catalog</a>
+        </div>
+        <div>
             <a [routerLink]="`/detalhes/${pokeData?.id}`">detalhes</a>
         </div>
-        <div (click)="fetchNextPokemon(false)"></div>
-        <div (click)="fetchNextPokemon()"></div>
+        <div>
+            <div (click)="fetchNextPokemon(false)"></div>
+            <div (click)="fetchNextPokemon()"></div>
+        </div>
     </div>
 </main>
-
-<div class="container">
-    <div *ngIf="pokemons.length === 0; else pokemonDisplay">
-
-    </div>
-
-    <ng-template #pokemonDisplay>
-        <div *ngFor="let pokemon of pokemons">
-            {{ pokemon.pokeName }}
-        </div>
-    </ng-template>
-</div>

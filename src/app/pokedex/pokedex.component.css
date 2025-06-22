@@ -99,23 +99,37 @@ main hr {
 
 .detailsBottom {
     justify-content: end;
+    align-items: center;
     display: flex;
-    gap: 1rem;
+    gap: 15px;
     width: 100%;
 }
 
 .detailsBottom div {
-    background-color: #0f453a;
     width: fit-content;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2rem;
+}
+
+.detailsBottom > div:last-of-type {
+    width: 9rem;
+}
+.detailsBottom div:last-of-type div{
+    background-color: #0f453a;
     clip-path: polygon(100% 50%, 0 0, 0 100%);
 }
 
-.detailsBottom div:nth-of-type(2) {
+.detailsBottom > div:last-of-type div:first-of-type {
     transform: rotate(180deg);
+    margin-right: 5px;
 }
 
-.detailsBottom div:first-of-type {
+.detailsBottom > div:nth-of-type(1),
+.detailsBottom > div:nth-of-type(2) {
+    background-color: #0f453a;
     clip-path: revert;
     font-family: 'Pixeled';
     font-size: .8rem;
@@ -126,4 +140,32 @@ main hr {
 a {
     text-decoration: none;
     color: #21997f;;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .pokemonDetails {
+        display: none;
+    }
+
+    .pokemonImage {
+        width: 100%;
+    }
+
+    .detailsBottom div {
+        height: 3rem;
+    }
+
+    .detailsBottom {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    main {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 92%);
+    }
+
+    hr {
+        display: none;
+    }
 }
