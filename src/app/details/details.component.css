@@ -27,10 +27,6 @@ h4 {
     text-transform: capitalize;
 }
 
-.firstColumn {
-    width: 50%;
-}
-
 .general {
     display: flex;
     flex-direction: column;

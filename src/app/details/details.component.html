@@ -7,7 +7,7 @@
     <img src="assets/imgs/play.png" alt="seta de retorno">
 </div>
 <main [style.backgroundColor]="getColor(pokeSpecies?.color?.name) ">
-    <div class="firstColumn">
+    <div>
         <div class="general">
             <p># {{ getFormattedId() }}</p>
             <img [src]="artworkSrc" [alt]="pokeData?.name">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="lastColumn">
+    <div>
         <div class="battleStats">
             <h4>Battle Stats</h4>
             <div *ngFor="let item of pokeData?.stats">
@@ -50,6 +50,11 @@
             <div class="cardAbility" *ngFor="let item of pokeData?.abilities">
                 {{ item.ability.name }}
             </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            
         </div>
     </div>
 </main>
