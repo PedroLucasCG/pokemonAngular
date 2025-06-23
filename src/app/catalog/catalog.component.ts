@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { PokemonService } from '../features/pokemons/services/pokemon.service';
+import { CookieService } from '../features/favorites/services/cookie.service';
 import { PokeDataWithArtwork, PokeApiResponse, PokeApiShortResponse } from '../models/pokemon';
+import type { LucideIconData } from 'lucide-angular';
+import { LucideAngularModule, Heart} from 'lucide-angular';
 import { pokemonTypeColorMap } from '../constants/pokemonColors';
 import { forkJoin, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -8,19 +11,23 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LucideAngularModule],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
 })
 export class CatalogComponent {
     pokeData : PokeDataWithArtwork[] | null = null;
+    favorites : number[] = [];
     typeColor : Record<string, string> = pokemonTypeColorMap;
     page : number = 0;
     itemPerPage : number = 30;
     totalPages : number = 0;
     currentPage : number = 1;
+    favoritoIcon : LucideIconData = Heart;
 
-    constructor (private pokemonService: PokemonService ) {}
+    constructor (
+        private pokemonService: PokemonService,
+        private cookieService: CookieService ) {}
 
     fetchPokemonData(offset : number = 0) {
         this.pokemonService.getAll(this.itemPerPage, offset).subscribe(data => {
@@ -42,6 +49,42 @@ export class CatalogComponent {
                 }));
             });
         });
+    }
+
+    addPokemonToFavorites(id: number) {
+        if (!this.pokeData) return;
+        const pokemonToAdd = this.pokeData.find(item => item.id === id);
+        if (!pokemonToAdd) return;
+
+        const alreadyFavorite = this.favorites.find(item => item === id);
+        if (alreadyFavorite) return;
+
+        this.favorites.push(pokemonToAdd.id);
+        this.cookieService.setCookie("favorites", JSON.stringify(this.favorites), 30);
+
+        console.log(this.getFavorites);
+    }
+
+    get getFavorites(): PokeDataWithArtwork[] {
+        const favoritesCookie = this.cookieService.getCookie("favorites");
+        if (favoritesCookie) {
+            try {
+                return JSON.parse(favoritesCookie) as PokeDataWithArtwork[];
+            } catch (e) {
+                console.error('Failed to parse favorites cookie', e);
+                return [];
+            }
+        }
+        return [];
+    }
+
+    removePokemonFromFavorites(id : number) {
+        this.favorites = this.favorites.filter(item => item !== id);
+        this.cookieService.setCookie("favorites", JSON.stringify(this.favorites), 30);
+    }
+
+    isFavorite(id: number): boolean {
+        return this.favorites.some(item => item === id);
     }
 
     changePage(page : number | string) {
@@ -83,6 +126,10 @@ export class CatalogComponent {
     }
 
     ngOnInit(){
+        const favoritesCookie = this.cookieService.getCookie("favorites");
+        if (favoritesCookie) {
+            this.favorites = JSON.parse(favoritesCookie);
+        }
         this.fetchPokemonData();
     }
 }

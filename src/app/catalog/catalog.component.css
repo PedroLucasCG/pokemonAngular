@@ -20,12 +20,23 @@ h1 {
 }
 
 .card {
+    position: relative;
     background-color: white;
     width: fit-content;
     border-radius: 1rem;
     padding: 2rem;
     cursor: pointer;
     transition: all ease-in-out .2s;
+}
+.my-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: lightgray
+}
+
+.favorited {
+    color: pink;
 }
 
 .card:hover {

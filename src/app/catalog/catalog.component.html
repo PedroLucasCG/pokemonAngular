@@ -16,6 +16,11 @@
     </div>
     <section class="cardGrid">
         <div class="card" *ngFor="let pokemon of pokeData" [routerLink]="`/detalhes/${pokemon.id}`">
+            <lucide-icon
+                [img]="favoritoIcon"
+                [ngClass]="{ 'my-icon': true, 'favorited': isFavorite(pokemon.id) }"
+                (click)="addPokemonToFavorites(pokemon.id); $event.stopPropagation()">
+            </lucide-icon>
             <img [src]="pokemon.artworkSrc" [alt]="pokemon.name">
             <p>{{ pokemon.name }}</p>
             <div>
