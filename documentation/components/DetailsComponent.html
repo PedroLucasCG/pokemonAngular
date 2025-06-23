@@ -1,0 +1,1517 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>poke-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">poke-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DetailsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/details/details.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-details</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>LucideAngularModule</code>
+                            <code>RouterLink</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./details.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./details.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#artworkSrc" >artworkSrc</a>
+                            </li>
+                            <li>
+                                <a href="#evolutionChain" >evolutionChain</a>
+                            </li>
+                            <li>
+                                <a href="#iconBackPokedex" >iconBackPokedex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#icons" >icons</a>
+                            </li>
+                            <li>
+                                <a href="#pokeData" >pokeData</a>
+                            </li>
+                            <li>
+                                <a href="#pokeEvolutionData" >pokeEvolutionData</a>
+                            </li>
+                            <li>
+                                <a href="#pokeSpecies" >pokeSpecies</a>
+                            </li>
+                            <li>
+                                <a href="#randomIndex" >randomIndex</a>
+                            </li>
+                            <li>
+                                <a href="#typeColor" >typeColor</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#evolutionDetails" >evolutionDetails</a>
+                            </li>
+                            <li>
+                                <a href="#fetchPokemonData" >fetchPokemonData</a>
+                            </li>
+                            <li>
+                                <a href="#getColor" >getColor</a>
+                            </li>
+                            <li>
+                                <a href="#getContrastColor" >getContrastColor</a>
+                            </li>
+                            <li>
+                                <a href="#getFormattedId" >getFormattedId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#nextEvolution" >nextEvolution</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#sanitizeFlavorText" >sanitizeFlavorText</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#pageId" >pageId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: ActivatedRoute, pokemonService: <a href="../injectables/PokemonService.html" target="_self">PokemonService</a>, pokemonSpeciesService: <a href="../injectables/PokemonSpeciesService.html" target="_self">PokemonSpeciesService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/details/details.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pokemonService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PokemonService.html" target="_self" >PokemonService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pokemonSpeciesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PokemonSpeciesService.html" target="_self" >PokemonSpeciesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageId"></a>
+                        <b>pageId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/details/details.component.ts:38</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="evolutionDetails"></a>
+                    <span class="name">
+                        <span ><b>evolutionDetails</b></span>
+                        <a href="#evolutionDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>evolutionDetails(evolutionChainData: <a href="../interfaces/EvolutionNode.html" target="_self">EvolutionNode</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/details/details.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>evolutionChainData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EvolutionNode.html" target="_self" >EvolutionNode</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchPokemonData"></a>
+                    <span class="name">
+                        <span ><b>fetchPokemonData</b></span>
+                        <a href="#fetchPokemonData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fetchPokemonData(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/details/details.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getColor"></a>
+                    <span class="name">
+                        <span ><b>getColor</b></span>
+                        <a href="#getColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getColor(name: string | undefined)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/details/details.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                                        <code>string | undefined</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContrastColor"></a>
+                    <span class="name">
+                        <span ><b>getContrastColor</b></span>
+                        <a href="#getContrastColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getContrastColor(hexColor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/details/details.component.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>hexColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFormattedId"></a>
+                    <span class="name">
+                        <span ><b>getFormattedId</b></span>
+                        <a href="#getFormattedId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFormattedId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/details/details.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextEvolution"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>nextEvolution</b></span>
+                        <a href="#nextEvolution"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>nextEvolution(evolutionUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/details/details.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>evolutionUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EvolutionNode.html" target="_self" >Promise&lt;EvolutionNode&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/details/details.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sanitizeFlavorText"></a>
+                    <span class="name">
+                        <span ><b>sanitizeFlavorText</b></span>
+                        <a href="#sanitizeFlavorText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sanitizeFlavorText(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/details/details.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>text</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="artworkSrc"></a>
+                    <span class="name">
+                        <span ><b>artworkSrc</b></span>
+                        <a href="#artworkSrc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/details/details.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="evolutionChain"></a>
+                    <span class="name">
+                        <span ><b>evolutionChain</b></span>
+                        <a href="#evolutionChain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/details/details.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="iconBackPokedex"></a>
+                    <span class="name">
+                        <span ><b>iconBackPokedex</b></span>
+                        <a href="#iconBackPokedex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;../../assets/imgs/play.png&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/details/details.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="icons"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>icons</b></span>
+                        <a href="#icons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;string | LucideIconData&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        hp: Heart,
+        attack: Swords,
+        defense: Shield,
+        &#x27;special-defense&#x27;: ShieldHalf,
+        speed: Zap,
+        &#x27;special-attack&#x27;: LoaderPinwheel
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/details/details.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pokeData"></a>
+                    <span class="name">
+                        <span ><b>pokeData</b></span>
+                        <a href="#pokeData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PokeData.html" target="_self" >PokeData | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/details/details.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pokeEvolutionData"></a>
+                    <span class="name">
+                        <span ><b>pokeEvolutionData</b></span>
+                        <a href="#pokeEvolutionData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>PokeDataEvolution[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/details/details.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pokeSpecies"></a>
+                    <span class="name">
+                        <span ><b>pokeSpecies</b></span>
+                        <a href="#pokeSpecies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PokeSpeciesData.html" target="_self" >PokeSpeciesData | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/details/details.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="randomIndex"></a>
+                    <span class="name">
+                        <span ><b>randomIndex</b></span>
+                        <a href="#randomIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/details/details.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typeColor"></a>
+                    <span class="name">
+                        <span ><b>typeColor</b></span>
+                        <a href="#typeColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;string | string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>pokemonTypeColorMap</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/details/details.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LucideAngularModule, Heart, Swords, Shield, ShieldHalf, Zap, LoaderPinwheel } from &#x27;lucide-angular&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, Input } from &#x27;@angular/core&#x27;;
+import { firstValueFrom } from &#x27;rxjs&#x27;;
+import { ActivatedRoute, RouterLink } from &#x27;@angular/router&#x27;;
+import type { LucideIconData } from &#x27;lucide-angular&#x27;;
+import { PokemonService } from &#x27;../features/pokemons/services/pokemon.service&#x27;;
+import { PokeDataEvolution, PokeData } from &#x27;../models/pokemon&#x27;;
+import { PokeSpeciesData, FlavorTextEntry, EvolutionNode } from &#x27;../models/pokemonSpecies&#x27;;
+import { pokemonTypeColorMap, pokemonColorMap } from &#x27;../constants/pokemonColors&#x27;;
+import { PokemonSpeciesService } from &#x27;../features/pokemons/services/pokemonSpecies.service&#x27;;
+
+@Component({
+  selector: &#x27;app-details&#x27;,
+  imports: [CommonModule, LucideAngularModule, RouterLink],
+  templateUrl: &#x27;./details.component.html&#x27;,
+  styleUrl: &#x27;./details.component.css&#x27;
+})
+export class DetailsComponent {
+    artworkSrc &#x3D; &quot;&quot;;
+    pokeData : PokeData | null &#x3D; null;
+    pokeEvolutionData : PokeDataEvolution[] &#x3D; [];
+    pokeSpecies : PokeSpeciesData | null &#x3D; null;
+    randomIndex : number &#x3D; 0;
+    typeColor : Record&lt;string, string&gt; &#x3D; pokemonTypeColorMap;
+    iconBackPokedex : string &#x3D; &quot;../../assets/imgs/play.png&quot;;
+    evolutionChain : string[] &#x3D; [];
+
+    readonly icons : Record&lt;string, LucideIconData&gt; &#x3D; {
+        hp: Heart,
+        attack: Swords,
+        defense: Shield,
+        &#x27;special-defense&#x27;: ShieldHalf,
+        speed: Zap,
+        &#x27;special-attack&#x27;: LoaderPinwheel
+    }
+
+    @Input({ required: true }) pageId!: string;
+
+    constructor (
+        private route: ActivatedRoute,
+        private pokemonService: PokemonService,
+        private pokemonSpeciesService: PokemonSpeciesService ) {}
+
+    fetchPokemonData(id : number) {
+        this.artworkSrc &#x3D; &quot;&quot;;
+        this.pokeData &#x3D; null;
+        this.pokeSpecies &#x3D; null;
+        this.pokeEvolutionData &#x3D; [];
+        this.evolutionChain &#x3D; [];
+        this.randomIndex &#x3D; 0;
+
+        this.pokemonService.getById(id).subscribe(data &#x3D;&gt; {
+            this.artworkSrc &#x3D; data.sprites.other[&quot;official-artwork&quot;].front_default;
+            this.pokeData &#x3D; {
+                id: data.id,
+                name: data.name,
+                types: data.types,
+                height: data.height / 100,
+                weight: data.weight / 100,
+                abilities: data.abilities,
+                stats: data.stats,
+            };
+        });
+        this.pokemonSpeciesService.getById(id).subscribe(async data &#x3D;&gt; {
+            this.pokeSpecies &#x3D; {
+                color: data.color,
+                flavor_text_entries : data.flavor_text_entries,
+                evolution_chain: data.evolution_chain,
+            }
+            const englishEntries &#x3D; data.flavor_text_entries.filter(
+                (entry : FlavorTextEntry) &#x3D;&gt; entry.language.name &#x3D;&#x3D;&#x3D; &#x27;en&#x27;
+            );
+            this.randomIndex &#x3D; Math.floor(Math.random() * englishEntries.length);
+            this.pokeSpecies.flavor_text_entries  &#x3D; englishEntries;
+
+            let evolutionUrl &#x3D; this.pokeSpecies?.evolution_chain?.url;
+            let evolutionChainData &#x3D; await this.nextEvolution(evolutionUrl);
+            this.evolutionDetails(evolutionChainData);
+
+            for (const pokemon of this.evolutionChain) {
+                this.pokemonService.getByName(pokemon).subscribe( pokemonData &#x3D;&gt; {
+                    this.pokeEvolutionData.push({
+                        id: pokemonData.id,
+                        name: pokemonData.name,
+                        types: pokemonData.types,
+                        height: pokemonData.height / 100,
+                        weight: pokemonData.weight / 100,
+                        abilities: pokemonData.abilities,
+                        stats: pokemonData.stats,
+                        artworkSrc: pokemonData.sprites.other[&quot;official-artwork&quot;].front_default
+                    });
+                });
+            }
+        });
+    }
+
+     evolutionDetails(evolutionChainData: EvolutionNode) {
+        this.evolutionChain.push(evolutionChainData.species.name);
+
+        for (const evol of evolutionChainData.evolves_to) {
+            this.evolutionDetails(evol);
+        }
+    }
+
+
+    async nextEvolution(evolutionUrl: string): Promise&lt;EvolutionNode&gt; {
+        const data &#x3D; await firstValueFrom(this.pokemonService.getWithUrl(evolutionUrl));
+        return data.chain;
+    }
+
+    sanitizeFlavorText(text: string): string {
+        return text
+            .replace(/\n|\f/g, &#x27; &#x27;)
+            .replace(/\s+/g, &#x27; &#x27;)
+            .trim();
+    }
+
+    getFormattedId(): string {
+        if (!this.pokeData?.id) return &#x27;&#x27;;
+        return this.pokeData.id.toString().padStart(3, &#x27;0&#x27;);
+    }
+
+    getColor(name : string | undefined) {
+        return pokemonColorMap[name || &#x27;white&#x27;];
+    }
+
+    getContrastColor(hexColor: string): string {
+        const color &#x3D; hexColor.replace(&#x27;#&#x27;, &#x27;&#x27;);
+
+        const r &#x3D; parseInt(color.slice(0, 2), 16);
+        const g &#x3D; parseInt(color.slice(2, 4), 16);
+        const b &#x3D; parseInt(color.slice(4, 6), 16);
+
+        const luminance &#x3D; (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+        return luminance &gt; 0.5 ? &#x27;black&#x27; : &#x27;white&#x27;;
+    }
+
+
+    ngOnInit(){
+        this.route.paramMap.subscribe(params &#x3D;&gt; {
+            const id &#x3D; params.get(&#x27;id&#x27;);
+            if (id) {
+                this.fetchPokemonData(parseInt(id));
+            }
+        });
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;backToPokedex&quot;&gt;
+    &lt;img src&#x3D;&quot;assets/imgs/play.png&quot; alt&#x3D;&quot;seta de retorno&quot;&gt;
+    &lt;a routerLink&#x3D;&quot;&quot;&gt;Pokedex&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;allPokemons&quot;&gt;
+    &lt;a routerLink&#x3D;&quot;/catalog&quot;&gt;Catalog&lt;/a&gt;
+    &lt;img src&#x3D;&quot;assets/imgs/play.png&quot; alt&#x3D;&quot;seta de retorno&quot;&gt;
+&lt;/div&gt;
+&lt;main [style.backgroundColor]&#x3D;&quot;getColor(pokeSpecies?.color?.name) &quot;&gt;
+    &lt;div&gt;
+        &lt;div class&#x3D;&quot;general&quot;&gt;
+            &lt;p&gt;# {{ getFormattedId() }}&lt;/p&gt;
+            &lt;img [src]&#x3D;&quot;artworkSrc&quot; [alt]&#x3D;&quot;pokeData?.name&quot;&gt;
+            &lt;p class&#x3D;&quot;pokemonName&quot;&gt;{{ pokeData?.name }}&lt;/p&gt;
+            &lt;div&gt;
+                &lt;span class&#x3D;&quot;pokemonType&quot; *ngFor&#x3D;&quot;let type of pokeData?.types&quot; [style.backgroundColor]&#x3D;&quot;getColor(pokeSpecies?.color?.name)&quot; [style.color]&#x3D;&quot;getContrastColor(getColor(pokeSpecies?.color?.name))&quot;&gt;{{ type.type.name }}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;p class&#x3D;&quot;flavorText&quot;&gt;{{ sanitizeFlavorText(pokeSpecies?.flavor_text_entries?.[randomIndex]?.flavor_text || &quot;No Flavor Text&quot;) }}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;physicalStats&quot;&gt;
+            &lt;h4&gt;Physycal Stats&lt;/h4&gt;
+            &lt;div&gt;
+                &lt;div&gt;
+                    &lt;span&gt;{{ pokeData?.height }} m&lt;/span&gt;
+                    Height
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;span&gt;{{ pokeData?.weight }} kg&lt;/span&gt;
+                    Weight
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class&#x3D;&quot;battleStats&quot;&gt;
+            &lt;h4&gt;Battle Stats&lt;/h4&gt;
+            &lt;div *ngFor&#x3D;&quot;let item of pokeData?.stats&quot;&gt;
+                &lt;div class&#x3D;&quot;iconLabel&quot;&gt;
+                    &lt;lucide-icon [img]&#x3D;&quot;icons[item.stat.name]&quot; class&#x3D;&quot;my-icon&quot;&gt;&lt;/lucide-icon&gt;
+                    &lt;div class&#x3D;&quot;label&quot; [innerHtml]&#x3D;&quot;item.stat.name&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;number&quot;&gt;{{ item.base_stat }}&lt;/div&gt;
+                &lt;div class&#x3D;&quot;bar&quot;&gt;
+                    &lt;div class&#x3D;&quot;fill&quot; [style.width.%]&#x3D;&quot;item.base_stat / 1.5&quot; [style.backgroundColor]&#x3D;&quot;getColor(pokeSpecies?.color?.name)&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;abilities&quot;&gt;
+            &lt;h4&gt;abilities&lt;/h4&gt;
+            &lt;div class&#x3D;&quot;cardAbility&quot; *ngFor&#x3D;&quot;let item of pokeData?.abilities&quot;&gt;
+                {{ item.ability.name }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div&gt;
+            &lt;h4&gt;Evolution Chain&lt;/h4&gt;
+            &lt;div class&#x3D;&quot;card&quot; *ngFor&#x3D;&quot;let pokemon of pokeEvolutionData&quot; [routerLink]&#x3D;&quot;&#x60;/detalhes/${pokemon.id}&#x60;&quot;&gt;
+                &lt;img [src]&#x3D;&quot;pokemon.artworkSrc&quot; [alt]&#x3D;&quot;pokemon.name&quot;&gt;
+                &lt;p&gt;{{ pokemon.name }}&lt;/p&gt;
+                &lt;div&gt;
+                    &lt;span
+                        *ngFor&#x3D;&quot;let type of pokemon.types&quot;
+                        [style.backgroundColor]&#x3D;&quot;typeColor[type.type.name]&quot;&gt;
+                        {{ type.type.name }}
+                    &lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/main&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="backToPokedex">    <img src="assets/imgs/play.png" alt="seta de retorno">    <a routerLink="">Pokedex</a></div><div class="allPokemons">    <a routerLink="/catalog">Catalog</a>    <img src="assets/imgs/play.png" alt="seta de retorno"></div><main [style.backgroundColor]="getColor(pokeSpecies?.color?.name) ">    <div>        <div class="general">            <p># {{ getFormattedId() }}</p>            <img [src]="artworkSrc" [alt]="pokeData?.name">            <p class="pokemonName">{{ pokeData?.name }}</p>            <div>                <span class="pokemonType" *ngFor="let type of pokeData?.types" [style.backgroundColor]="getColor(pokeSpecies?.color?.name)" [style.color]="getContrastColor(getColor(pokeSpecies?.color?.name))">{{ type.type.name }}</span>            </div>        <p class="flavorText">{{ sanitizeFlavorText(pokeSpecies?.flavor_text_entries?.[randomIndex]?.flavor_text || "No Flavor Text") }}</p>        </div>        <div class="physicalStats">            <h4>Physycal Stats</h4>            <div>                <div>                    <span>{{ pokeData?.height }} m</span>                    Height                </div>                <div>                    <span>{{ pokeData?.weight }} kg</span>                    Weight                </div>            </div>        </div>    </div>    <div>        <div class="battleStats">            <h4>Battle Stats</h4>            <div *ngFor="let item of pokeData?.stats">                <div class="iconLabel">                    <lucide-icon [img]="icons[item.stat.name]" class="my-icon"></lucide-icon>                    <div class="label" [innerHtml]="item.stat.name"></div>                </div>                <div class="number">{{ item.base_stat }}</div>                <div class="bar">                    <div class="fill" [style.width.%]="item.base_stat / 1.5" [style.backgroundColor]="getColor(pokeSpecies?.color?.name)"></div>                </div>            </div>        </div>        <div class="abilities">            <h4>abilities</h4>            <div class="cardAbility" *ngFor="let item of pokeData?.abilities">                {{ item.ability.name }}            </div>        </div>    </div>    <div>        <div>            <h4>Evolution Chain</h4>            <div class="card" *ngFor="let pokemon of pokeEvolutionData" [routerLink]="`/detalhes/${pokemon.id}`">                <img [src]="pokemon.artworkSrc" [alt]="pokemon.name">                <p>{{ pokemon.name }}</p>                <div>                    <span                        *ngFor="let type of pokemon.types"                        [style.backgroundColor]="typeColor[type.type.name]">                        {{ type.type.name }}                    </span>                </div>            </div>        </div>    </div></main></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CatalogComponent', 'selector': 'app-catalog'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'PokedexComponent', 'selector': 'app-pokedex'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DetailsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DetailsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
