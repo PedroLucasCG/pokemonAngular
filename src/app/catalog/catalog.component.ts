@@ -3,9 +3,9 @@ import { PokemonService } from '../features/pokemons/services/pokemon.service';
 import { CookieService } from '../features/favorites/services/cookie.service';
 import { PokeDataWithArtwork, PokeApiResponse, PokeApiShortResponse } from '../models/pokemon';
 import type { LucideIconData } from 'lucide-angular';
-import { LucideAngularModule, Heart} from 'lucide-angular';
+import { LucideAngularModule, Heart, Trash, X} from 'lucide-angular';
 import { pokemonTypeColorMap } from '../constants/pokemonColors';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -18,12 +18,16 @@ import { RouterLink } from '@angular/router';
 export class CatalogComponent {
     pokeData : PokeDataWithArtwork[] | null = null;
     favorites : number[] = [];
+    favoritesData : PokeDataWithArtwork[] = [];
     typeColor : Record<string, string> = pokemonTypeColorMap;
     page : number = 0;
     itemPerPage : number = 30;
     totalPages : number = 0;
     currentPage : number = 1;
+    showModal: boolean = false;
     favoritoIcon : LucideIconData = Heart;
+    trashIcon : LucideIconData = Trash;
+    closeIcon : LucideIconData = X;
 
     constructor (
         private pokemonService: PokemonService,
@@ -51,7 +55,7 @@ export class CatalogComponent {
         });
     }
 
-    addPokemonToFavorites(id: number) {
+    async addPokemonToFavorites(id: number) {
         if (!this.pokeData) return;
         const pokemonToAdd = this.pokeData.find(item => item.id === id);
         if (!pokemonToAdd) return;
@@ -62,14 +66,31 @@ export class CatalogComponent {
         this.favorites.push(pokemonToAdd.id);
         this.cookieService.setCookie("favorites", JSON.stringify(this.favorites), 30);
 
-        console.log(this.getFavorites);
+        this.favoritesData = await this.getFavorites();
     }
 
-    get getFavorites(): PokeDataWithArtwork[] {
+    async getFavorites(): Promise<PokeDataWithArtwork[]> {
         const favoritesCookie = this.cookieService.getCookie("favorites");
         if (favoritesCookie) {
             try {
-                return JSON.parse(favoritesCookie) as PokeDataWithArtwork[];
+                const pokemonIds: number[] = JSON.parse(favoritesCookie);
+                const requests = pokemonIds.map(id => this.pokemonService.getById(id));
+
+                const responses = await firstValueFrom(forkJoin(requests));
+
+                const pokemons: PokeDataWithArtwork[] = responses.map(data => ({
+                    id: data.id,
+                    name: data.name,
+                    types: data.types,
+                    height: data.height / 100,
+                    weight: data.weight / 100,
+                    abilities: data.abilities,
+                    stats: data.stats,
+                    artworkSrc: data.sprites.other["official-artwork"].front_default
+                }));
+
+                return pokemons;
+
             } catch (e) {
                 console.error('Failed to parse favorites cookie', e);
                 return [];
@@ -78,13 +99,24 @@ export class CatalogComponent {
         return [];
     }
 
-    removePokemonFromFavorites(id : number) {
+
+    async removePokemonFromFavorites(id : number) {
         this.favorites = this.favorites.filter(item => item !== id);
         this.cookieService.setCookie("favorites", JSON.stringify(this.favorites), 30);
+        this.favoritesData = await this.getFavorites();
     }
 
     isFavorite(id: number): boolean {
         return this.favorites.some(item => item === id);
+    }
+
+
+    openModal() {
+        this.showModal = true;
+    }
+
+    closeModal() {
+        this.showModal = false;
     }
 
     changePage(page : number | string) {
@@ -125,11 +157,12 @@ export class CatalogComponent {
         return pages;
     }
 
-    ngOnInit(){
+    async ngOnInit(){
         const favoritesCookie = this.cookieService.getCookie("favorites");
         if (favoritesCookie) {
             this.favorites = JSON.parse(favoritesCookie);
         }
+        this.favoritesData = await this.getFavorites();
         this.fetchPokemonData();
     }
 }

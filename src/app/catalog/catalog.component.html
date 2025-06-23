@@ -14,6 +14,26 @@
             </span>
         </span>
     </div>
+    <div class="favorites" (click)="openModal()">
+        <lucide-icon
+            [img]="favoritoIcon">
+        </lucide-icon>
+        <span>Favorites</span>
+    </div>
+    <div class="modal" *ngIf="showModal">
+        <div class="modal-content">
+            <h4>Favorites</h4>
+            <lucide-icon [img]="closeIcon" (click)="closeModal()" class="closeIcon"></lucide-icon>
+            <div class="line-card" *ngFor="let pokemon of favoritesData">
+                <img [src]="pokemon.artworkSrc" [alt]="pokemon.name">
+                <p>{{ pokemon.name }}</p>
+                <lucide-icon [img]="trashIcon" (click)="removePokemonFromFavorites(pokemon.id)" class="trashIcon"></lucide-icon>
+            </div>
+            <p *ngIf="favoritesData.length === 0">
+                There is no favorites yet...
+            </p>
+        </div>
+    </div>
     <section class="cardGrid">
         <div class="card" *ngFor="let pokemon of pokeData" [routerLink]="`/detalhes/${pokemon.id}`">
             <lucide-icon
