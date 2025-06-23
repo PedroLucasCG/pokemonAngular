@@ -61,7 +61,10 @@ export class CatalogComponent {
         if (!pokemonToAdd) return;
 
         const alreadyFavorite = this.favorites.find(item => item === id);
-        if (alreadyFavorite) return;
+        if (alreadyFavorite) {
+            await this.removePokemonFromFavorites(alreadyFavorite);
+            return;
+        }
 
         this.favorites.push(pokemonToAdd.id);
         this.cookieService.setCookie("favorites", JSON.stringify(this.favorites), 30);
